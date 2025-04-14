@@ -12,12 +12,11 @@ client = Groq(
 
 MAIN = "Project"  
 os.makedirs(MAIN, exist_ok=True)  
-print(f"🤖 Generated files will be managed in: ./{MAIN}/")
+print(f"🤖 You will be working in: ./{MAIN}/")
 
 def run_command(command: str) -> str:
     print(f"🔨 Tool Called: run_command, Command: {command}")
     try:
-        # Execute the command within the defined MAIN
         result = subprocess.run(
             command,
             shell=True,
@@ -62,19 +61,16 @@ def create_dir(path: str):
         return f"Error creating directory {full_path}: {e}"
 
 def get_current_dir():
-    # TODO!: Do an actual API Call
     print("🔨 Tool Called: get_current_directory")
     
     current_directory = os.getcwd()
     return current_directory
 
 def write_to_file(path: str, content: str) -> str:
-    """Writes (overwrites) content to an existing file."""
     
     return create_file(path, content)
 
 def read_file(path: str) -> str:
-    """Reads the content of a file."""
     full_path = os.path.join(MAIN, path)
     print(f"🔨 Tool Called: read_file, Path: {full_path}")
     try:
@@ -91,7 +87,6 @@ def read_file(path: str) -> str:
         return f"Error reading file {full_path}: {e}"
     
 def list_directory(path: str = ".") -> str:
-    """Lists the contents of a directory within the project."""
     full_path = os.path.join(MAIN, path)
     print(f"🔨 Tool Called: list_directory, Path: {full_path}")
     try:
